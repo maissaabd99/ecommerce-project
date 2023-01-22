@@ -82,5 +82,17 @@ namespace eTickets.Controllers
 
             return View("OrderCompleted");
         }
+
+        public IActionResult Pay()
+        {
+            //var test =  _shoppingCart.GetShoppingCartItems();
+            return View("Pay");
+        }
+
+        public IActionResult AddPay()
+        {
+            //var test =  _shoppingCart.GetShoppingCartItems();
+            return RedirectToAction("Index");
+        }
     }
 }

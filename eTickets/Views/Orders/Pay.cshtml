@@ -1,0 +1,65 @@
+﻿@model eTickets.Models.Pay
+
+@{
+    ViewData["Title"] = "Pay";
+}
+
+
+<div class="row">
+    <div class="col-md-4 offset-4">
+        <h4 class="text-center">Complete your order</h4>
+        <hr />
+        <form asp-action="CompleteOrder">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="CardName" class="control-label"></label>
+                <input asp-for="CardName" class="form-control" />
+                <span asp-validation-for="CardName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CardNumber" class="control-label"></label>
+                <input asp-for="CardNumber" class="form-control" />
+                <span asp-validation-for="CardNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ExpDate" class="control-label"></label>
+                <input asp-for="ExpDate" type="date" class="form-control" id="dateexp" onchange="validate()" min="@DateTime.Now.ToString("yyyy-MM-ddThh:mm")" />
+                <span asp-validation-for="ExpDate" class="text-danger" id="errorcard"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SecurityCode" class="control-label"></label>
+                <input asp-for="SecurityCode" class="form-control" />
+                <span asp-validation-for="SecurityCode" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Pay now" class="btn btn-success form-control" /> 
+            </div>
+            <div class="form-group">
+                <a asp-controller="Orders" asp-action="ShoppingCart" class="btn btn-outline-secondary form-control">Back to Shopping cart </a>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+
+@section Scripts {
+    <script>
+function validate()
+{
+            const date = new Date().toJSON().slice(0, 10);;
+        console.log(date); 
+        
+    var res = document.getElementById("dateexp").value;
+        console.log(res);
+        if(res < date){
+                document.getElementById("errorcard").innerHTML = "Card expired !"
+            console.log("card expired !!!!!!")
+        }
+   
+}
+    </script>
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+
+}

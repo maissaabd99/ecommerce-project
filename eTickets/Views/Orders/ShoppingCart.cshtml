@@ -10,9 +10,8 @@
         <div class="text-center">
             <h2>You shopping cart summary</h2>
         </div>
-
-        <table class="table">
-            <thead>
+        <table class="table table-hover">
+            <thead class="thead-dark">
                 <tr>
                     <th>Selected amount</th>
                     <th>Movie</th>
@@ -60,7 +59,11 @@
                 @*<a class="btn btn-outline-primary" asp-action="CompleteOrder">
                         Complete order
                     </a>*@
-                <div id="paypal-btn"></div>
+                <div>
+                    <a class="btn btn-secondary" asp-controller="Orders" asp-action="Pay">
+                        Pay Now
+                    </a>
+                </div>
                 <span style="padding:5px"></span>
                 <a class="btn btn-outline-success" asp-controller="Movies" asp-action="Index">
                     Add more items
